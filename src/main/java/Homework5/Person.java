@@ -2,13 +2,9 @@ package Homework5;
 
 public class Person {
 
-    private String name;
-    private int age;
-    private boolean isMan;
-
-    public void isMan(boolean isMan) {
-        System.out.println("man");
-    }
+    protected String name;
+    protected int age;
+    protected boolean isMan;
 
     public Person(String name, int age, boolean isMan) {
         this.name = name;
@@ -16,7 +12,11 @@ public class Person {
         this.isMan = isMan;
     }
 
-    public void showPersonInfo() {
-        System.out.println(this.name + " is a " + this.isMan + this.age + "  years old");
+    public String getGender() {
+        return isMan ? "male" : "female";
+    }
+
+    public String showPersonInfo() {
+        return (this.name + " is a " + this.getGender() + ", " + this.age + " years old.");
     }
 }
