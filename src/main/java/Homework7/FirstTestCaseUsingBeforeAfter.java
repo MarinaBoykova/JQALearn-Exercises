@@ -14,7 +14,7 @@ public class FirstTestCaseUsingBeforeAfter extends generateRandomString {
     }
 
     @Test
-    public void assertElement() {
+    public void assertElements() {
 
         // Click one navigation link and verify the page url
         System.out.println("Starting test " + new Object() {
