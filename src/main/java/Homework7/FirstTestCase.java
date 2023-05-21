@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public class FirstTestCase extends generateRandomString {git
+public class FirstTestCase extends generateRandomString {
 
     public static void main(String[] args) throws InterruptedException {
 
