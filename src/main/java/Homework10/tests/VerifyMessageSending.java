@@ -3,7 +3,6 @@ package Homework10.tests;
 import Homework10.helpers.BrowserFactory;
 import Homework10.pages.ConsultingPage;
 import Homework10.pages.HomePage;
-import org.junit.After;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
