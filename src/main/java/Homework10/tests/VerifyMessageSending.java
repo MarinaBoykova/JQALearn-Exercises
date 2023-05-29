@@ -13,7 +13,7 @@ public class VerifyMessageSending {
     public void checkMessageSending() {
 
         // Launch the browser
-        WebDriver driver = BrowserFactory.startBrowser("chrome", "https://ultimateqa.com/consulting/");
+        WebDriver driver = BrowserFactory.startBrowser("chrome", "https://ultimateqa.com/");
 
         // Created Page Objects using Page Factory
         HomePage homePage = PageFactory.initElements(driver, HomePage.class);
