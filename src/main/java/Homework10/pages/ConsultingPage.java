@@ -42,7 +42,7 @@ public class ConsultingPage extends generateRandomString {
     public void verifyIfSuccessfulMessageIsDisplayed() {
         String message = successfulMessage.getText();
         String expectedMessage = "We're Here To Transform Your Automation!";
-        if (message.equalsIgnoreCase(expectedMessage))
+        if (message.equals(expectedMessage))
             System.out.println("You sent a message!");
 
         else

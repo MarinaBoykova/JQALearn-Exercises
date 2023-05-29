@@ -18,9 +18,14 @@ public class HomePage {
     WebElement navigationLink;
 
     // Method to check if navigation link is present
-    public String verifyLinkIsPresent() {
+    public void verifyLinkIsPresent() {
         String linkName = navigationLink.getText();
-        return linkName;
+        String expectedLinkName = "Professional Services";
+        if (linkName.equals(expectedLinkName))
+            System.out.println("The navigation link is present!");
+
+        else
+            System.out.println("The navigation link is not present!");
     }
 
     // Method to click on Navigation link
