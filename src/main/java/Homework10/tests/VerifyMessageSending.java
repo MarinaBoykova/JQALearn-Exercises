@@ -21,6 +21,7 @@ public class VerifyMessageSending {
         ConsultingPage consultingPage = PageFactory.initElements(driver, ConsultingPage.class);
 
         // Call the methods
+        homePage.verifyLinkIsPresent();
         homePage.clickOnLink();
         consultingPage.sendMessage();
         consultingPage.verifyIfSuccessfulMessageIsDisplayed();
