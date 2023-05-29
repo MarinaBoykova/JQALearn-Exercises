@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 public class FirstTestCase extends generateRandomString {
 
@@ -13,9 +12,7 @@ public class FirstTestCase extends generateRandomString {
 
         // System Property for Chrome Driver
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\marin\\Downloads\\chromedriver_win32\\chromedriver.exe");
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--remote-allow-origins=*");
-        WebDriver driver = new ChromeDriver(options);
+        WebDriver driver = new ChromeDriver();
 
         // Launch website
         driver.navigate().to("https://ultimateqa.com/");
