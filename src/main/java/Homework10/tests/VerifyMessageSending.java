@@ -25,11 +25,7 @@ public class VerifyMessageSending {
         homePage.clickOnLink();
         consultingPage.sendMessage();
         consultingPage.verifyIfSuccessfulMessageIsDisplayed();
-    }
 
-    @After
-    public void tearDown() {
         BrowserFactory.closeBrowser();
     }
-
 }
