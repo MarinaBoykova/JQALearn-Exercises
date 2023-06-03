@@ -22,6 +22,7 @@ public class VerifyMessageSending {
         // Call the methods
         homePage.verifyLinkIsPresent();
         homePage.clickOnLink();
+        consultingPage.verifyPageUrl();
         consultingPage.sendMessage();
         consultingPage.verifyIfSuccessfulMessageIsDisplayed();
 

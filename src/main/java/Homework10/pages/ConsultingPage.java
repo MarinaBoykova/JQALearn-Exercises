@@ -5,6 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class ConsultingPage extends generateRandomString {
     WebDriver driver;
@@ -38,15 +42,15 @@ public class ConsultingPage extends generateRandomString {
     @CacheLookup
     WebElement successfulMessage;
 
-    // Method to check if successful message is displayed is present
-    public void verifyIfSuccessfulMessageIsDisplayed() {
-        String message = successfulMessage.getText();
-        String expectedMessage = "We're Here To Transform Your Automation!";
-        if (message.equals(expectedMessage))
-            System.out.println("You sent a message!");
+    // Method to check if page URL is correct
+    public void verifyPageUrl() {
+        String pageURL = driver.getCurrentUrl();
+        String expectedPageURL = "https://ultimateqa.com/consulting/";
+        if (pageURL.equals(expectedPageURL))
+            System.out.println("The correct page is loaded!");
 
         else
-            System.out.println("Something went wrong!");
+            System.out.println("Wrong page!");
     }
 
     // Method to populate the data and send the message
@@ -56,5 +60,18 @@ public class ConsultingPage extends generateRandomString {
         companyName.sendKeys(generateRandomString());
         messageField.sendKeys(generateRandomString());
         sendMessageButton.submit();
+    }
+
+    // Method to check if successful message is displayed is present
+    public void verifyIfSuccessfulMessageIsDisplayed() {// Wait until successfulMessage is visible
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        successfulMessage = wait.until(ExpectedConditions.visibilityOf(successfulMessage));
+        String message = successfulMessage.getText();
+        String expectedMessage = "We're Here To Transform Your Automation!";
+        if (message.equals(expectedMessage))
+            System.out.println("You sent a message!");
+
+        else
+            System.out.println("Something went wrong!");
     }
 }
