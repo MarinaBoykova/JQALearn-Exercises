@@ -4,6 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class HomePage {
     WebDriver driver;
@@ -19,6 +23,9 @@ public class HomePage {
 
     // Method to check if navigation link is present
     public void verifyLinkIsPresent() {
+        // Wait until navigationLink is visible
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        navigationLink = wait.until(ExpectedConditions.visibilityOf(navigationLink));
         String linkName = navigationLink.getText();
         String expectedLinkName = "Professional Services";
         if (linkName.equals(expectedLinkName))
