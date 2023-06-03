@@ -37,9 +37,6 @@ public class HomePage {
 
     // Method to click on Navigation link
     public void clickOnLink() {
-        // Wait until navigationLink is clickable
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        navigationLink = wait.until(ExpectedConditions.elementToBeClickable(navigationLink));
         navigationLink.click();
     }
 
