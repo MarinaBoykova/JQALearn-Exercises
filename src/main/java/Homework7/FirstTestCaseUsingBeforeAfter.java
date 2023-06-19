@@ -17,8 +17,6 @@ public class FirstTestCaseUsingBeforeAfter extends generateRandomString {
     public void assertElements() {
 
         // Click one navigation link and verify the page url
-        System.out.println("Starting test " + new Object() {
-        }.getClass().getEnclosingMethod().getName());
         driver.get("https://ultimateqa.com/");
         WebElement navigationLink = driver.findElement(By.xpath("(//a[contains(.,'Professional Services')])[1]"));
         navigationLink.click();
@@ -45,8 +43,6 @@ public class FirstTestCaseUsingBeforeAfter extends generateRandomString {
         WebElement sendMessageButton = driver.findElement(By.xpath("//button[@type='submit']"));
         Assert.assertTrue(sendMessageButton.isDisplayed());
         sendMessageButton.click();
-        System.out.println("Ending test " + new Object() {
-        }.getClass().getEnclosingMethod().getName());
     }
 
     @AfterClass

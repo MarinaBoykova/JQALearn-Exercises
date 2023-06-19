@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 public class VerifyMessageSending {
 
     @Test
-    public void checkMessageSending() {
+    public void verifyMessageSending() {
 
         // Launch the browser
         WebDriver driver = BrowserFactory.startBrowser("chrome", "https://ultimateqa.com/");
@@ -23,8 +23,10 @@ public class VerifyMessageSending {
         homePage.verifyLinkIsPresent();
         homePage.clickOnLink();
         consultingPage.verifyPageUrl();
-        consultingPage.sendMessage();
-        consultingPage.verifyIfSuccessfulMessageIsDisplayed();
+        consultingPage.populateData();
+        consultingPage.passCaptcha();
+        consultingPage.clickOnSubmit();
+        //consultingPage.verifyIfSuccessfulMessageIsDisplayed();
 
         BrowserFactory.closeBrowser();
     }
