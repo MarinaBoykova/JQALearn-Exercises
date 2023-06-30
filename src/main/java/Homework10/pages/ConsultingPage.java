@@ -38,7 +38,7 @@ public class ConsultingPage extends generateRandomString {
     @CacheLookup
     WebElement sendMessageButton;
 
-    @FindBy(xpath = "//*[@id=\"et_pb_contact_form_0\"]/div")
+    @FindBy(xpath = "//*[@id=\"et_pb_contact_form_0\"]/div/p")
     @CacheLookup
     WebElement successfulMessage;
 
@@ -50,47 +50,119 @@ public class ConsultingPage extends generateRandomString {
     @CacheLookup
     WebElement captchaInput;
 
+    @FindBy(xpath = "//li[contains(.,'Invalid email')]")
+    @CacheLookup
+    WebElement validationMessageForEmail;
+
+    @FindBy(xpath = "//p[contains(.,'Please, fill in the following fields:')]")
+    @CacheLookup
+    WebElement validationMessageForMissingData;
+
+    @FindBy(xpath = "//li[contains(.,'Name')]")
+    @CacheLookup
+    WebElement validationMessageForName;
+
     // Method to pass the captcha
     public void passCaptcha() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        captcha = wait.until(ExpectedConditions.visibilityOf(captcha));
-        String str = captcha.getText();
-        System.out.println(str);
-        String firstText = str.substring(0, 1).replaceAll(" ", "");
+        WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(30));
+        this.captcha = wait.until(ExpectedConditions.visibilityOf(this.captcha));
+        String str = this.captcha.getText();
+        String firstText = str.substring(0, 2).replaceAll(" ", "");
         String secondString = str.substring(str.length() - 2).replaceAll(" ", "");
         int first = Integer.parseInt(firstText);
         int second = Integer.parseInt(secondString);
         int sum = first + second;
         String sum1 = Integer.toString(sum);
-        captchaInput = wait.until(ExpectedConditions.elementToBeClickable(captchaInput));
-        captchaInput.sendKeys(sum1);
+        this.captchaInput = wait.until(ExpectedConditions.elementToBeClickable(this.captchaInput));
+        this.captchaInput.sendKeys(sum1);
     }
 
     // Method to check if page URL is correct
     public void verifyPageUrl() {
-        String pageURL = driver.getCurrentUrl();
+        String pageURL = this.driver.getCurrentUrl();
         String expectedPageURL = "https://ultimateqa.com/consulting/";
-        if (pageURL.equals(expectedPageURL))
+        if (pageURL.equals(expectedPageURL)) {
             System.out.println("The correct page is loaded!");
 
-        else
+        } else {
             System.out.println("Wrong page!");
+        }
     }
 
-    // Method to populate the data and send the message
+    // Method to populate the data
     public void populateData() {
-        userName.sendKeys(generateRandomString());
-        email.sendKeys(generateRandomString() + "@gmail.com");
-        companyName.sendKeys(generateRandomString());
-        messageField.sendKeys(generateRandomString());
+        this.userName.sendKeys(generateRandomString());
+        this.email.sendKeys(generateRandomString() + "@gmail.com");
+        this.companyName.sendKeys(generateRandomString());
+        this.messageField.sendKeys(generateRandomString());
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    // Method to check if successful message is displayed is present
+    // Method to populate the data with wrong email format
+    public void populateDataWithWrongEmail() {
+        this.userName.sendKeys(generateRandomString());
+        this.email.sendKeys("99999999999");
+        this.companyName.sendKeys(generateRandomString());
+        this.messageField.sendKeys(generateRandomString());
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Method to populate the data without Name
+    public void populateDataWithoutName() {
+        this.email.sendKeys(generateRandomString() + "@gmail.com");
+        this.companyName.sendKeys(generateRandomString());
+        this.messageField.sendKeys(generateRandomString());
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Method to check if validation form email field is displayed
+    public void verifyValidationForEmail() {
+        // Wait until successfulMessage is visible
+        WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
+        this.validationMessageForEmail = wait.until(ExpectedConditions.visibilityOf(this.validationMessageForEmail));
+        String message = this.validationMessageForEmail.getText();
+        String expectedMessage = "Invalid email";
+        if (message.equals(expectedMessage))
+            System.out.println("Invalid email!");
+
+        else
+            System.out.println("Something went wrong!");
+    }
+
+    // Method to check if validation form email field is displayed
+    public void verifyValidationForName() {
+        // Wait until successfulMessage is visible
+        WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
+        this.validationMessageForMissingData = wait.until(ExpectedConditions.visibilityOf(this.validationMessageForMissingData));
+        String message = this.validationMessageForMissingData.getText();
+        String messageForField = this.validationMessageForName.getText();
+        String expectedMessage = "Please, fill in the following fields:";
+        if (message.contains(expectedMessage) && messageForField.contains("Name")) {
+            System.out.println("Please, fill in the following fields: Name");
+
+        } else {
+            System.out.println("Something went wrong!");
+        }
+    }
+
+    // Method to check if successful message is displayed
     public void verifyIfSuccessfulMessageIsDisplayed() {
         // Wait until successfulMessage is visible
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        successfulMessage = wait.until(ExpectedConditions.visibilityOf(successfulMessage));
-        String message = successfulMessage.getText();
+        WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
+        this.successfulMessage = wait.until(ExpectedConditions.visibilityOf(this.successfulMessage));
+        String message = this.successfulMessage.getText();
         String expectedMessage = "We have much appreciated the message and will contact you soon!";
         if (message.equals(expectedMessage))
             System.out.println("You sent a message!");
@@ -100,6 +172,6 @@ public class ConsultingPage extends generateRandomString {
     }
 
     public void clickOnSubmit() {
-        sendMessageButton.submit();
+        this.sendMessageButton.submit();
     }
 }

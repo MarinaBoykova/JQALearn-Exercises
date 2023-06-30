@@ -26,7 +26,7 @@ public class VerifyMessageSending {
         consultingPage.populateData();
         consultingPage.passCaptcha();
         consultingPage.clickOnSubmit();
-        //consultingPage.verifyIfSuccessfulMessageIsDisplayed();
+        consultingPage.verifyIfSuccessfulMessageIsDisplayed();
 
         BrowserFactory.closeBrowser();
     }

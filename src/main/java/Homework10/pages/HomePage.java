@@ -24,9 +24,9 @@ public class HomePage {
     // Method to check if navigation link is present
     public void verifyLinkIsPresent() {
         // Wait until navigationLink is visible
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        navigationLink = wait.until(ExpectedConditions.visibilityOf(navigationLink));
-        String linkName = navigationLink.getText();
+        WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
+        this.navigationLink = wait.until(ExpectedConditions.visibilityOf(this.navigationLink));
+        String linkName = this.navigationLink.getText();
         String expectedLinkName = "Professional Services";
         if (linkName.equals(expectedLinkName))
             System.out.println("The navigation link is present!");
@@ -37,7 +37,6 @@ public class HomePage {
 
     // Method to click on Navigation link
     public void clickOnLink() {
-        navigationLink.click();
+        this.navigationLink.click();
     }
-
 }
